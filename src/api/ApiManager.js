@@ -24,5 +24,16 @@ export default {
             },
             body: JSON.stringify(product)
         })
+    },
+    putCustomer(customer) {
+        return fetch(`${remoteURL}/customers/${customer.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('bangazon_token')}`
+            },
+            body: JSON.stringify(customer)
+        })
     }
 }
