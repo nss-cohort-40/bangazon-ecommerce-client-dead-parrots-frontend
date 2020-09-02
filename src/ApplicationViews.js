@@ -17,7 +17,7 @@ export default function ApplicationViews(props) {
     return (
         <>
             <Route
-                path="/" render={props => {
+                exact path="/" render={props => {
                     return <Home {...props} />
                 }}
             />
@@ -43,7 +43,7 @@ export default function ApplicationViews(props) {
 
             <Route
                 exact path="/products/:productId" render={props => {
-                    return <ProductDetails {...props} />
+                    return <ProductDetails productId={parseInt(props.match.params.productId)} {...props} />
                 }}
             />
 
