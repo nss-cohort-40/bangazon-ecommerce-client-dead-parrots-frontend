@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const AccountEditForm = props => {
-  const {
-    buttonLabel,
-    className
-  } = props;
-
   const [modal, setModal] = useState(true);
 
   const toggle = () => {
@@ -15,14 +10,25 @@ const AccountEditForm = props => {
   }
 
   useEffect(() => {
-    getCustomer()}, []);
+    props.getCustomer()}, []);
 
   return (
     <div>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
+      <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Account Edit Form</ModalHeader>
         <ModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <form className="col-8 offset-2 text-left">
+            <div className="form-group">
+              <label htmlFor="first-name"><strong>First Name</strong></label>
+              <input
+                type="text"
+                className="form-control"
+                id="first-name"
+                // value={plantType}
+                // onChange={this.typeChange}
+              />
+            </div>
+        </form>
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
