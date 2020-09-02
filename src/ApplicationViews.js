@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, withRouter } from 'react-router-dom';
-import Login from './components/auth/Login'; 
+import Login from './components/auth/Login';
 import ProductList from './components/products/ProductList';
 import ProductDetails from './components/products/ProductDetails';
 import OrderList from './components/orders/OrderList';
@@ -10,36 +10,38 @@ import Register from './components/auth/Register';
 import Home from './components/Home/Home';
 import ProductTypes from './components/products/ProductTypes';
 
-const ApplicationViews = props => {
-    return (
-        <React.Fragment>
+export default function ApplicationViews(props) {
 
+    const setCurrentUser = props.setCurrentUser
+    return (
+        <>
             <Route
                 path="/" render={props => {
                     return <Home {...props} />
                 }}
             />
-
             <Route
-                path="/login" render={props => {
-                    return <Login {...props} />
+                exact
+                path='/register'
+                render={props => {
+                    return <Register setIsCurrentUser={setCurrentUser} {...props} />
+                }}
+            />
+            <Route
+                exact
+                path="/login"
+                render={props => {
+                    return <Login setIsCurrentUser={setCurrentUser} {...props} />
+                }}
+            />
+            <Route
+                exact path="/products" render={props => {
+                    return <ProductList {...props} />
                 }}
             />
 
             <Route
-                path="/register" render={props => {
-                    return <Register {...props} />
-                }}
-            />
-
-            <Route
-               exact path="/products" render={ props => {
-                    return <ProductList { ...props } />
-                }}
-            />
-
-            <Route
-               exact path="/products/:productId" render={props => {
+                exact path="/products/:productId" render={props => {
                     return <ProductDetails {...props} />
                 }}
             />
@@ -68,8 +70,6 @@ const ApplicationViews = props => {
                 }}
             />
 
-        </React.Fragment>
+        </>
     )
 }
-
-export default ApplicationViews;
