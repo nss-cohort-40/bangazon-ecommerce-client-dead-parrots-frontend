@@ -1,5 +1,6 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import ProductCard from './ProductCard'
+import { Link } from 'react-router-dom'
 
 export default function ProductList(props) {
     const [products, setProducts] = useState([])
@@ -12,8 +13,8 @@ export default function ProductList(props) {
                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
-        .then(res => res.json())
-        .then(setProducts)
+            .then(res => res.json())
+            .then(setProducts)
     }
 
     useEffect(() => {
@@ -22,7 +23,7 @@ export default function ProductList(props) {
 
     return (
         <div>
-            {products.map(product => <ProductCard key={product.id} product={product} {...props}/>)}
+            {products.map(product => <ProductCard key={product.id} product={product} {...props} />)}
         </div>
     )
 }
