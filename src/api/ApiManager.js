@@ -24,5 +24,21 @@ export default {
             },
             body: JSON.stringify(product)
         })
+    },
+    deleteProduct(id) {
+        return fetch(`${remoteURL}/products/${id}`, {
+            "method": "DELETE",
+            "headers": {
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            }
+        })
+    },
+    deleteProduct(id) {
+        return fetch(`${remoteURL}/products/${id}`, {
+            "method": "DELETE",
+            "headers": {
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            }
+        })
     }
 }

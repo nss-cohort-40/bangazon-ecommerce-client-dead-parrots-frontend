@@ -1,6 +1,12 @@
 import React from 'react'
+import ApiManager from '../../api/ApiManager'
 
 export default function ProductCard(props) {
+
+    const handleDelete = () => {
+        ApiManager.deleteProduct(props.product.id).then(props.getProducts).then(props.history.push('/products'))
+    }
+
     return (
         <>
             <div>
@@ -8,7 +14,12 @@ export default function ProductCard(props) {
                 <p>{props.product.description}</p>
                 <p>{props.product.price}</p>
                 <p>{props.product.location}</p>
-            </div>        
+                {props.customer ?
+                    < button onClick={handleDelete}>
+                        Delete
+                </button>
+                    : null}
+            </div>
         </>
     )
 }
