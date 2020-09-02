@@ -9,6 +9,7 @@ import ProductForm from './components/products/ProductForm';
 import Register from './components/auth/Register';
 import Home from './components/Home/Home';
 import ProductTypes from './components/products/ProductTypes';
+import ProductSearch from './components/products/ProductSearch';
 
 export default function ApplicationViews(props) {
 
@@ -67,6 +68,12 @@ export default function ApplicationViews(props) {
             <Route
                 path="/cart" render={props => {
                     return <OrderList {...props} />
+                }}
+            />
+
+            <Route
+                path="/search" render={props => {
+                    return <ProductSearch {...props} />
                 }}
             />
 
