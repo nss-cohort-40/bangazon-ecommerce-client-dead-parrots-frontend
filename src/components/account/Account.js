@@ -20,7 +20,6 @@ const Account = props => {
       })
   };
 
-
   useEffect(() => {
     getCustomer()}, []);
 

@@ -3,6 +3,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const AccountEditForm = props => {
   const [modal, setModal] = useState(true);
+  const firstName = useRef();
+  const lastName = useRef();
 
   const toggle = () => {
     props.setFormOpen(false);
