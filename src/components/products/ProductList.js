@@ -9,7 +9,7 @@ export default function ProductList(props) {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
-                // "Authorization": `token ${token goes here}`
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
         .then(res => res.json())

@@ -9,14 +9,13 @@ export default function ProductDetails(props) {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
-                // "Content-Type": "application/json",
-                // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
         .then(response => response.json())
         .then(products => {
             setProduct(products)
-            // setNumProducts(products.quantity)
         })
     }
 
@@ -30,8 +29,8 @@ export default function ProductDetails(props) {
         <div>
             <h2>{product.title}</h2>
             <p>{product.description}</p>
-            {/* <p>{product.quantity}</p> */}
             <p>{product.price}</p>
+            <button>Add To Order(in progress)</button>
         </div>
     )
 }
