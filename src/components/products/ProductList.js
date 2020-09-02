@@ -23,12 +23,6 @@ export default function ProductList(props) {
 
     return (
         <div>
-            <Link to={`sell/`}>
-                <button >
-                    Sell Product
-            </button>
-            </Link>
-
             {products.map(product => <ProductCard key={product.id} product={product} {...props} />)}
         </div>
     )
