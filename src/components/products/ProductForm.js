@@ -9,11 +9,12 @@ export default function ProductForm(props) {
     const location = useRef()
     const quantity = useRef()
     const imagePath = useRef()
-    const [localDelivery, setLocalDelivery] = useState(false)
+    const [checked, setChecked] = useState(false)
     const [customer, setCustomer] = useState({ user: {} })
     const [productTypeId, setProductTypeId] = useState({ product_type_id: "" })
     const [productTypes, setProductTypes] = useState([])
     const [isValid, setIsValid] = useState(false)
+    const handleClick = () => setChecked(!checked)
 
     const getCustomer = () => {
         ApiManager.getCurrentCustomer()
@@ -44,7 +45,7 @@ export default function ProductForm(props) {
                 image_path: imagePath.current.value,
                 product_type_id: productTypeId.product_type_id,
                 created_at: date,
-                local_delivery: false
+                local_delivery: checked
 
             }
             ApiManager.postNewProduct(product).then(e => {
@@ -118,6 +119,15 @@ export default function ProductForm(props) {
                         name="imagePath"
                         className="form-control"
                         placeholder="imagePath"
+                    />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="localDelivery"> Local Delivery</label>
+                    <input onClick={handleClick} type="checkbox"
+                        checked={checked}
+                        name="localDelivery"
+                        className="form-control"
+                        placeholder="localDelivery"
                     />
                 </fieldset>
                 <fieldset>
