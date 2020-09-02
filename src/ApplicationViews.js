@@ -1,14 +1,25 @@
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
-import Login from './components/auth/Login'
-import Register from './components/auth/Register'
-
+import { Route, withRouter } from 'react-router-dom';
+import Login from './components/auth/Login';
+import ProductList from './components/products/ProductList';
+import ProductDetails from './components/products/ProductDetails';
+import OrderList from './components/orders/OrderList';
+import Account from './components/account/Account';
+import ProductForm from './components/products/ProductForm';
+import Register from './components/auth/Register';
+import Home from './components/Home/Home';
+import ProductTypes from './components/products/ProductTypes';
 
 export default function ApplicationViews(props) {
 
     const setCurrentUser = props.setCurrentUser
     return (
         <>
+            <Route
+                path="/" render={props => {
+                    return <Home {...props} />
+                }}
+            />
             <Route
                 exact
                 path='/register'
@@ -23,6 +34,42 @@ export default function ApplicationViews(props) {
                     return <Login setIsCurrentUser={setCurrentUser} {...props} />
                 }}
             />
+            <Route
+                exact path="/products" render={props => {
+                    return <ProductList {...props} />
+                }}
+            />
+
+            <Route
+                exact path="/products/:productId" render={props => {
+                    return <ProductDetails {...props} />
+                }}
+            />
+
+            <Route
+                path="/productTypes" render={props => {
+                    return <ProductTypes {...props} />
+                }}
+            />
+
+            <Route
+                path="/sell" render={props => {
+                    return <ProductForm {...props} />
+                }}
+            />
+
+            <Route
+                path="/account" render={props => {
+                    return <Account {...props} />
+                }}
+            />
+
+            <Route
+                path="/cart" render={props => {
+                    return <OrderList {...props} />
+                }}
+            />
+
         </>
     )
 }
