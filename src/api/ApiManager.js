@@ -35,5 +35,15 @@ export default {
             },
             body: JSON.stringify(customer)
         })
-    }
-}
+    },
+    getPaymentTypes() {
+        return fetch(`${remoteURL}/paymenttypes`, {
+            "method": "GET",
+            "headers": {
+                "Accept": "application/json",
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            }
+        })
+            .then(response => response.json())
+    },      
+};

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import AccountEditForm from './AccountEditForm';
+import ApiManager from '../../api/ApiManager';
+import PaymentTypeList from '../payment_types/PaymentTypeList';
 
 const Account = props => {
 
@@ -7,18 +10,11 @@ const Account = props => {
   const [ formOpen, setFormOpen ] = useState( false )
 
   const getCustomer = () => {
-    return fetch("http://127.0.0.1:8000/customers", {
-      method: "GET",
-      headers: {
-        "Accept": "application/json",
-        "Authorization": `token ${localStorage.getItem('bangazon_token')}`
-      }
+    ApiManager.getCurrentCustomer()
+    .then((customer) => {
+        setCustomerDetails(customer[0])
     })
-      .then(response => response.json())
-      .then((customer) => {
-        setCustomerDetails(customer[0]);
-      })
-  };
+}
 
   useEffect(() => {
     getCustomer()}, []);
@@ -31,6 +27,7 @@ const Account = props => {
             <p>Last Name: {customerDetails.user.last_name}</p>
             <p>Address: {customerDetails.address}</p>
             <p>Phone Number: {customerDetails.phone_number}</p>
+            <a className="btn btn-primary" href="/paymentTypes">Payment Types</a>
             <button onClick={() => setFormOpen(true)}>Edit Account</button>
             { formOpen ? <AccountEditForm setFormOpen={ setFormOpen } getCustomer={ getCustomer }/> : '' } 
         </div>
