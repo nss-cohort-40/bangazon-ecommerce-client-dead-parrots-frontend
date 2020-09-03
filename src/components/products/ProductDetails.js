@@ -5,7 +5,7 @@ export default function ProductDetails(props) {
     const [product, setProduct] = useState({})
 
     const getProduct = () => {
-        fetch(`http://localhost:8000/products/${props.productId}`, {
+        fetch(`http://localhost:8000/products?title=${props.productId}`, {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
