@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import AccountEditForm from './AccountEditForm';
 import ApiManager from '../../api/ApiManager';
-import PaymentTypeList from '../payment_types/PaymentTypeList';
+import PaymentTypeForm from '../payment_types/PaymentTypeForm';
 
 const Account = props => {
 
   const [ customerDetails , setCustomerDetails ] = useState({ user: {} });
-  const [ formOpen, setFormOpen ] = useState( false )
+  const [ accountFormOpen, setAccountFormOpen ] = useState( false )
+  const [ paymentFormOpen, setPaymentFormOpen ] = useState( false )
 
   const getCustomer = () => {
     ApiManager.getCurrentCustomer()
@@ -28,8 +28,10 @@ const Account = props => {
             <p>Address: {customerDetails.address}</p>
             <p>Phone Number: {customerDetails.phone_number}</p>
             <a className="btn btn-primary" href="/paymentTypes">Payment Types</a>
-            <button onClick={() => setFormOpen(true)}>Edit Account</button>
-            { formOpen ? <AccountEditForm setFormOpen={ setFormOpen } getCustomer={ getCustomer }/> : '' } 
+            <button onClick={() => setAccountFormOpen(true)}>Edit Account</button>
+            { accountFormOpen ? <AccountEditForm setAccountFormOpen={ setAccountFormOpen } getCustomer={ getCustomer }/> : '' } 
+            <button onClick={() => setPaymentFormOpen(true)}>Add Payment Option</button>
+            { paymentFormOpen ? <PaymentTypeForm setPaymentFormOpen={ setPaymentFormOpen } getCustomer={ getCustomer }/> : '' } 
         </div>
     )
 };

@@ -45,5 +45,26 @@ export default {
             }
         })
             .then(response => response.json())
-    },      
+    },
+    postPayment(payment) {
+      return fetch(`${remoteURL}/paymenttypes`, {
+        method: 'POST',
+        headers: {
+            'Content-type': "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem('bangazon_token')}`
+        },
+        body: JSON.stringify(payment)
+    })
+  },
+//   destroyPayment(payment) {
+//     return fetch(`${remoteURL}/paymenttypes${payment.id}`, {
+//       method: 'DELETE',
+//       headers: {
+//           'Content-type': "application/json",
+//           "Accept": "application/json",
+//           "Authorization": `Token ${localStorage.getItem('bangazon_token')}`
+//       },
+//   })
+// },  
 };

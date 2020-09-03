@@ -18,7 +18,7 @@ const AccountEditForm = props => {
 }
 
   const toggle = () => {
-    props.setFormOpen(false);
+    props.setAccountFormOpen(false);
     setModal(!modal);
   }
 
