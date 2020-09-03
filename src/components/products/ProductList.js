@@ -20,11 +20,11 @@ export default function ProductList(props) {
                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
-            .then(res => res.json())
-            .then(products => {
-                let customerProducts = products.filter(product => product.seller.url.split('customers/')[1] == customer.id)
-                setProducts(customerProducts)
-            })
+        .then(res => res.json())
+        .then(products => {
+            let customerProducts = products.filter(product => parseInt(product.seller.url.split('customers/')[1]) === customer.id)
+            setProducts(customerProducts)
+        })
     }
 
     useEffect(getCustomer, [])
