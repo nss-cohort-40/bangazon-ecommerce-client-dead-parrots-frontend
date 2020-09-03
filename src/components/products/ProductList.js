@@ -9,7 +9,7 @@ export default function ProductList(props) {
     const getCustomer = () => {
         ApiManager.getCurrentCustomer().then(customer => {
             setCustomer(customer[0])
-        }).then(() => getProducts)
+        })
     }
 
     const getProducts = () => {
@@ -23,6 +23,7 @@ export default function ProductList(props) {
             .then(res => res.json())
             .then(products => {
                 let customerProducts = products.filter(product => product.seller.url.split('customers/')[1] == customer.id)
+                console.log('customer products', customerProducts)
                 setProducts(customerProducts)
             })
     }
