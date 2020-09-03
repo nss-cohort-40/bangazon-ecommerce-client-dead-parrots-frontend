@@ -10,6 +10,7 @@ import Register from './components/auth/Register';
 import Home from './components/Home/Home';
 import ProductTypes from './components/products/ProductTypes';
 import PaymentTypeList from './components/payment_types/PaymentTypeList';
+import OrderHistoryList from './components/account/OrderHistoryList';
 
 export default function ApplicationViews(props) {
 
@@ -68,6 +69,12 @@ export default function ApplicationViews(props) {
             <Route
                 path="/paymentTypes" render={props => {
                     return <PaymentTypeList {...props} />
+                }}
+            />
+
+            <Route
+                path="/orderHistory" render={props => {
+                    return <OrderHistoryList {...props} />
                 }}
             />
 
