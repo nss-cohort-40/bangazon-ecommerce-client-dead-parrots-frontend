@@ -12,7 +12,7 @@ function App(props) {
 
   const search = (event, searchTerm) => {
     event.preventDefault();
-    return fetch(`http://127.0.0.1:8000/products?search=${searchTerm}`)       
+    return fetch(`http://127.0.0.1:8000/products?title=${searchTerm}`)       
         .then(res => res.json())
         .then((res) => setProducts(res))
         .then(() => props.history.push("/search"))
