@@ -7,7 +7,7 @@ export default function ProductList(props) {
     const [customer, setCustomer] = useState({})
 
     const getCustomer = () => {
-        fetch("http://localhost:8000/customers", {
+        return fetch("http://localhost:8000/customers", {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
@@ -21,7 +21,7 @@ export default function ProductList(props) {
     }
 
     const getProducts = () => {
-        fetch(`http://localhost:8000/products?quantity=20`, {
+        return fetch(`http://localhost:8000/products?quantity=20`, {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
