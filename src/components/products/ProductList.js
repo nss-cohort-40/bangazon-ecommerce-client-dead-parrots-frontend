@@ -23,7 +23,7 @@ export default function ProductList(props) {
         })
         .then(res => res.json())
         .then(products => {
-            let customerProducts = products.filter(product => product.seller.url.split('customers/')[1] === customer.id)
+            let customerProducts = products.filter(product => product.seller.url.split('customers/')[1] == customer.id)
             setProducts(customerProducts)
         })
     }

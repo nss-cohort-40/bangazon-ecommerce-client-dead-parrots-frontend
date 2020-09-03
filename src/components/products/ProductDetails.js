@@ -39,7 +39,7 @@ export default function ProductDetails(props) {
             <p>{product.description}</p>
             <p>{product.price}</p>
             <p>{product.quantity}</p>
-            {product.quantity < 0 ? (
+            {product.quantity < 1 ? (
                 <p>Out Of Stock</p>
             )
             : <button onClick={addingToOrder}>Add To Order</button>
