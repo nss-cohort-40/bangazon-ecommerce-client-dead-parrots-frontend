@@ -1,12 +1,14 @@
 import React from 'react';
 import { RouteComponentProps } from "react-router-dom";
  
-export default function ProductSearch() {
+export default function ProductSearch(props) {
 
-  const params = new URLSearchParams(this.props.location.search)
   return (
-      <div>
-
-      </div>
+            <div>
+                <h2><a href={`/products/${props.product.id}`}> {props.product.title}</a></h2>
+                <p>{props.product.description}</p>
+                <p>{props.product.price}</p>
+                <p>{props.product.location}</p>
+            </div>  
   )
 }

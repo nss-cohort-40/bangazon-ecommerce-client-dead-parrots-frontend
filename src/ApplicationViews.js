@@ -71,12 +71,11 @@ export default function ApplicationViews(props) {
                 }}
             />
 
-            <Route
-                path="/search" render={props => {
-                    return <ProductSearch {...props} />
-                }}
-            />
-
+            <Route path="/search"> 
+                <div>
+                {props.products.map (product => <ProductSearch key={product.id} product={product} {...props} />)}
+                </div>
+            </Route>   
         </>
     )
 }
