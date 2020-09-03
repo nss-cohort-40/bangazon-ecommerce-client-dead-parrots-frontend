@@ -14,23 +14,36 @@ export default function ProductDetails(props) {
             }
         })
         .then(response => response.json())
-        .then(products => {
-            setProduct(products)
-        })
+        .then(setProduct)
     }
+    
+    useEffect(getProduct, [])
 
-    useEffect (() => {
-        getProduct()
-    }, [])
-
-
+    const addingToOrder = () => {
+        return fetch(`http://localhost:8000/orderproducts`, {
+            'method': 'POST',
+            'headers': {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${localStorage.getItem("bangazon_token")}`
+            },
+            'body': JSON.stringify({
+                product_id: product.id
+            })
+        }).then(getProduct)
+    }
 
     return (
         <div>
             <h2>{product.title}</h2>
             <p>{product.description}</p>
             <p>{product.price}</p>
-            <button>Add To Order(in progress)</button>
+            <p>{product.quantity}</p>
+            {product.quantity < 1 ? (
+                <p>Out Of Stock</p>
+            )
+            : <button onClick={addingToOrder}>Add To Order</button>
+            }
         </div>
     )
 }
