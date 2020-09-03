@@ -123,7 +123,7 @@ export default function ProductForm(props) {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="localDelivery"> Local Delivery</label>
-                    <input onClick={handleClick} type="checkbox"
+                    <input onChange={handleClick} type="checkbox"
                         checked={checked}
                         name="localDelivery"
                         className="form-control"

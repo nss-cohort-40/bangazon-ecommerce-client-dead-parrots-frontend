@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import ProductCard from './ProductCard'
-// import { Link } from 'react-router-dom'
 import ApiManager from '../../api/ApiManager'
 
 export default function ProductList(props) {
@@ -21,11 +20,11 @@ export default function ProductList(props) {
                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
-        .then(res => res.json())
-        .then(products => {
-            let customerProducts = products.filter(product => product.seller.url.split('customers/')[1] == customer.id)
-            setProducts(customerProducts)
-        })
+            .then(res => res.json())
+            .then(products => {
+                let customerProducts = products.filter(product => product.seller.url.split('customers/')[1] == customer.id)
+                setProducts(customerProducts)
+            })
     }
 
     useEffect(getCustomer, [])
@@ -34,7 +33,7 @@ export default function ProductList(props) {
 
     return (
         <div>
-            {products.map(product => <ProductCard key={product.id} product={product} {...props} />)}
+            {products.map(product => <ProductCard key={product.id} getProducts={getProducts} customer={customer} product={product} {...props} />)}
         </div>
     )
 }

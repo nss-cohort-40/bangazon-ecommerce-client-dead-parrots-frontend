@@ -25,6 +25,22 @@ export default {
             body: JSON.stringify(product)
         })
     },
+    deleteProduct(id) {
+        return fetch(`${remoteURL}/products/${id}`, {
+            "method": "DELETE",
+            "headers": {
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            }
+        })
+    },
+    deleteProduct(id) {
+        return fetch(`${remoteURL}/products/${id}`, {
+            "method": "DELETE",
+            "headers": {
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            }
+        })
+    },
     putCustomer(customer) {
         return fetch(`${remoteURL}/customers/${customer.id}`, {
             method: 'PUT',
@@ -47,24 +63,24 @@ export default {
             .then(response => response.json())
     },
     postPayment(payment) {
-      return fetch(`${remoteURL}/paymenttypes`, {
-        method: 'POST',
-        headers: {
-            'Content-type': "application/json",
-            "Accept": "application/json",
-            "Authorization": `Token ${localStorage.getItem('bangazon_token')}`
-        },
-        body: JSON.stringify(payment)
-    })
-  },
-  destroyPayment(paymentId) {
-    return fetch(`${remoteURL}/paymenttypes/${paymentId}`, {
-      method: 'DELETE',
-      headers: {
-          'Content-type': "application/json",
-          "Accept": "application/json",
-          "Authorization": `Token ${localStorage.getItem('bangazon_token')}`
-      },
-  })
-},  
+        return fetch(`${remoteURL}/paymenttypes`, {
+            method: 'POST',
+            headers: {
+                'Content-type': "application/json",
+                "Accept": "application/json",
+                "Authorization": `Token ${localStorage.getItem('bangazon_token')}`
+            },
+            body: JSON.stringify(payment)
+        })
+    },
+    destroyPayment(paymentId) {
+        return fetch(`${remoteURL}/paymenttypes/${paymentId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-type': "application/json",
+                "Accept": "application/json",
+                "Authorization": `Token ${localStorage.getItem('bangazon_token')}`
+            },
+        })
+    },
 };
