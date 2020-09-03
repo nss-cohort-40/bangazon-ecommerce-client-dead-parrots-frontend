@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import moment from 'moment';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import ApiManager from '../../api/ApiManager';
 
@@ -17,10 +16,9 @@ export default function PaymentTypeForm(props) {
 
     const savePayment = (e) => {
       e.preventDefault();
-      const today = moment(Date.now()).format("YYYY-DD-MM"); 
-      console.log('today', today)
-      console.log('entered date', expirationDate.current.value)
-      if (moment(expirationDate.current.value).isSameorAfter(today, 'day')) {
+      const today = Date.now()
+      const expDate = Date.parse(expirationDate.current.value)
+      if (today < expDate) {
         const newPayment = {
           merchant_name: merchantName.current.value,
           account_number: accountNumber.current.value,
@@ -28,9 +26,10 @@ export default function PaymentTypeForm(props) {
         }
         ApiManager.postPayment(newPayment)
           .then(toggle())
-      } else {
-        alert('Payment Type is expired! Please try again.')
-      }
+        } 
+        else {
+          alert('Payment Type is expired! Please try again.')
+        }
     }
 
     return (

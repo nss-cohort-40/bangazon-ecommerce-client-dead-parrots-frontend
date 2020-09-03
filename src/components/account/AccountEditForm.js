@@ -10,7 +10,7 @@ const AccountEditForm = props => {
   const phoneNum = useRef();
   const addy = useRef();
 
-  const getCustomer = () => {
+  const getCustomerForForm = () => {
     ApiManager.getCurrentCustomer()
     .then((customer) => {
         setCustomer(customer[0])
@@ -31,13 +31,15 @@ const AccountEditForm = props => {
           first_name: firstName.current.value,
           last_name: lastName.current.value
       }
+      console.log('customer state', customer)
+      console.log('modified customer', modifiedCustomer)
       ApiManager.putCustomer(modifiedCustomer)
+      .then(props.getCustomer())
       .then(toggle())
-      .then(getCustomer())
   };
 
   useEffect(() => {
-    getCustomer()}, []);
+    getCustomerForForm()}, []);
 
   return (
     <div>
