@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Login from './components/auth/Login';
 import ProductList from './components/products/ProductList';
 import ProductDetails from './components/products/ProductDetails';
