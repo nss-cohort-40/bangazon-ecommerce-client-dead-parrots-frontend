@@ -12,6 +12,7 @@ import ProductTypes from './components/products/ProductTypes';
 import ProductSearch from './components/products/ProductSearch';
 import PaymentTypeList from './components/payment_types/PaymentTypeList';
 import OrderHistoryList from './components/account/OrderHistoryList';
+import CompletedOrder from './components/orders/CompletedOrder';
 
 export default function ApplicationViews(props) {
 
@@ -90,6 +91,12 @@ export default function ApplicationViews(props) {
                 {props.products.map (product => <ProductSearch key={product.id} product={product} {...props} />)}
                 </div>
             </Route>   
+
+            <Route
+                exact path="/confirmation" render={props => {
+                    return <CompletedOrder {...props} />
+                }}
+            /> 
         </>
     )
 }

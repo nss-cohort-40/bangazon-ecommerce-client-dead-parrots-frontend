@@ -26,6 +26,11 @@ export default function ProductList(props) {
                 console.log('customer products', customerProducts)
                 setProducts(customerProducts)
             })
+        .then(res => res.json())
+        .then(products => {
+            let customerProducts = products.filter(product => parseInt(product.seller.url.split('customers/')[1]) === customer.id)
+            setProducts(customerProducts)
+        })
     }
 
     useEffect(getCustomer, [])

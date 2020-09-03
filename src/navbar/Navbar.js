@@ -53,7 +53,7 @@ export default function NavBar(props) {
                             </li>
                             <form className="navbar-form" role="search">
                                 <div className="form-group navbar-right">
-                                    <input ref={searchTerm} type="text" className="searchTerm" placeholder="Search Products" />
+                                    <input ref={searchTerm} type="text" className="searchTerm" placeholder="Search Products"/>
                                 </div>
                                 <button type="submit" className="btn btn-default"
                                     onClick={(event) => { props.search(event, searchTerm.current.value) }}
