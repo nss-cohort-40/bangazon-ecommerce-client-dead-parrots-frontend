@@ -22,15 +22,11 @@ export default function ProductList(props) {
         })
             .then(res => res.json())
             .then(products => {
+                console.log('proddy', products)
                 let customerProducts = products.filter(product => product.seller.url.split('customers/')[1] == customer.id)
                 console.log('customer products', customerProducts)
                 setProducts(customerProducts)
             })
-        .then(res => res.json())
-        .then(products => {
-            let customerProducts = products.filter(product => parseInt(product.seller.url.split('customers/')[1]) === customer.id)
-            setProducts(customerProducts)
-        })
     }
 
     useEffect(getCustomer, [])

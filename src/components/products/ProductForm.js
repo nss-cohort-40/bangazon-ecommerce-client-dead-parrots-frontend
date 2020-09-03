@@ -115,7 +115,7 @@ export default function ProductForm(props) {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="imagePath"> Image path </label>
-                    <input ref={imagePath} type="text"
+                    <input ref={imagePath} type="file"
                         name="imagePath"
                         className="form-control"
                         placeholder="imagePath"
