@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Login from './components/auth/Login';
 import ProductList from './components/products/ProductList';
 import ProductDetails from './components/products/ProductDetails';
@@ -9,6 +9,7 @@ import ProductForm from './components/products/ProductForm';
 import Register from './components/auth/Register';
 import Home from './components/Home/Home';
 import ProductTypes from './components/products/ProductTypes';
+import ProductSearch from './components/products/ProductSearch';
 import PaymentTypeList from './components/payment_types/PaymentTypeList';
 
 export default function ApplicationViews(props) {
@@ -77,6 +78,11 @@ export default function ApplicationViews(props) {
                 }}
             />
 
+            <Route path="/search"> 
+                <div>
+                {props.products.map (product => <ProductSearch key={product.id} product={product} {...props} />)}
+                </div>
+            </Route>   
         </>
     )
 }
