@@ -3,9 +3,10 @@ import ApiManager from '../../api/ApiManager'
 
 export default function PaymentType(props) {
 
-  const deletePayment = (e, props) => {
+  const deletePayment = (e) => {
       const paymentId = e.target.id
       ApiManager.destroyPayment(paymentId)
+      .then(props.getPaymentTypes)
       .then(() => props.history.push('/paymentTypes'))
   } 
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import ApplicationViews from './ApplicationViews'
 import Navbar from './navbar/Navbar'
 
@@ -17,4 +17,4 @@ function App(props) {
   )
 }
 
-export default App;
+export default withRouter(App);
