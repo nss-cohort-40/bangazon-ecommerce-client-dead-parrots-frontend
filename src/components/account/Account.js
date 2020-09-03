@@ -28,6 +28,7 @@ const Account = props => {
             <p>Address: {customerDetails.address}</p>
             <p>Phone Number: {customerDetails.phone_number}</p>
             <a className="btn btn-primary" href="/paymentTypes">Payment Types</a>
+            <a className="btn btn-success" href="/orderHistory">Order History</a>
             <button onClick={() => setAccountFormOpen(true)}>Edit Account</button>
             { accountFormOpen ? <AccountEditForm setAccountFormOpen={ setAccountFormOpen } getCustomer={ getCustomer }/> : '' } 
             <button onClick={() => setPaymentFormOpen(true)}>Add Payment Option</button>
