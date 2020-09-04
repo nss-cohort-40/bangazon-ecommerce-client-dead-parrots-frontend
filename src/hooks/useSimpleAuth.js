@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import ApiManager from '../api/ApiManager'
+import { useState } from 'react'
 
-export default function useSimpleAuth() {
+function useSimpleAuth() {
 
     const [loggedIn, setIsLoggedIn] = useState(false)
 
@@ -51,3 +50,5 @@ export default function useSimpleAuth() {
 
     return { login, register, isAuthenticated, logout }
 }
+
+export default useSimpleAuth
