@@ -28,8 +28,5 @@ Team members of the Dead-Parrots
 Thank you instructors!
 * Joe Shepherd
 * Bryan Nilsen
-<<<<<<< HEAD
 * Madi Peper
-=======
-* Madi Peper
->>>>>>> 11094382c1bde1a17f4827fb14279e3360f6f411
+
