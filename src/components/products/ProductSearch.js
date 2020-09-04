@@ -9,6 +9,7 @@ export default function ProductSearch(props) {
                 <p>{props.product.description}</p>
                 <p>{props.product.price}</p>
                 <p>{props.product.location}</p>
+                <p>{props.product.imagePath}</p>
             </div>  
   )
 }
