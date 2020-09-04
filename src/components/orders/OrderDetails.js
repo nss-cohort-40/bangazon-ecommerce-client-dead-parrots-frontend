@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import useSimpleAuth from '../../hooks/useSimpleAuth'
 import ProductCard from '../products/ProductCard'
 
 export default function CompletedOrder(props) {

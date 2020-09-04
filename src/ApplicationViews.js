@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Route, Redirect } from 'react-router-dom';
 import Login from './components/auth/Login';
 import ProductList from './components/products/ProductList';
 import ProductDetails from './components/products/ProductDetails';
@@ -18,11 +18,22 @@ import OrderDetails from './components/orders/OrderDetails';
 export default function ApplicationViews(props) {
 
     const setCurrentUser = props.setCurrentUser
+    const [loggedIn, setIsLoggedIn] = useState(false)
+
+    const isAuthenticated = () =>
+        loggedIn || localStorage.getItem('bangazon_token') !== null
+
     return (
         <>
             <Route
                 exact path="/" render={props => {
-                    return <Home {...props} />
+                    if(isAuthenticated()) {
+
+                        return <Home setIsCurrentUser={setCurrentUser} {...props} />
+                    }
+                    else {
+                        return <Redirect to="/Login"/>
+                    }
                 }}
             />
             <Route

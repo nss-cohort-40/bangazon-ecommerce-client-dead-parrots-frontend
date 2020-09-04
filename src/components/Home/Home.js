@@ -9,7 +9,7 @@ export default function Home(props) {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
-                // "Authorization": `token ${localStorage.getItem("bangazon_token")}`
+                "Authorization": `token ${localStorage.getItem("bangazon_token")}`
             }
         })
         .then(res => res.json())
@@ -22,7 +22,7 @@ export default function Home(props) {
 
     return (
         <div>
-            {products.map(product => <ProductCard key={product.id} product={product} {...props}/>)}
+            {products.map(product => <ProductCard key={product.id} productId={product.id} product={product} {...props}/>)}
         </div>
     )
 }
