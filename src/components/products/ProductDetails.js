@@ -39,6 +39,7 @@ export default function ProductDetails(props) {
     return (
         <div>
             <h2>{product.title}</h2>
+            <img src={product.imagePath} />
             <p>{product.description}</p>
             <p>{product.price}</p>
             <p>{product.quantity}</p>
