@@ -31,8 +31,6 @@ const AccountEditForm = props => {
           first_name: firstName.current.value,
           last_name: lastName.current.value
       }
-      console.log('customer state', customer)
-      console.log('modified customer', modifiedCustomer)
       ApiManager.putCustomer(modifiedCustomer)
       .then(props.getCustomer())
       .then(toggle())
