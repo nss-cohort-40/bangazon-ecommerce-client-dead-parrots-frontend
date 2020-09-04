@@ -17,9 +17,7 @@ export default function CompletedOrder(props) {
         })
         .then(res => res.json())
         .then(productOrders => {
-            console.log(productOrders)
             setProductOrders(productOrders)
-            
             calculateTotal(productOrders)
         })
     }
@@ -49,11 +47,10 @@ export default function CompletedOrder(props) {
 
     useEffect(getProduct, [])
     useEffect(getProductsOrder, [])
-    let i = 0
 
     return (
         <>
-            <h2>Shopping Cart</h2>
+            <h2>Order # {order.id}</h2>
             <h2>${total}</h2>
             <div>
                 {productOrders.map(productorder => <div key={productorder.id}>

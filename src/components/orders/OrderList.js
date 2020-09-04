@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import ProductCard from '../products/ProductCard'
-import PaymentType from '../payment_types/PaymentType'
 import ApiManager from '../../api/ApiManager';
 
 
