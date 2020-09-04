@@ -47,6 +47,9 @@ export default function NavBar(props) {
                     isAuthenticated() ?
                         <>
                             <li className="nav-item">
+                                <Link className="nav-link" to="/products">Products</Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link" to="/sell">Sell Product</Link>
                             </li>
                             <li className="nav-item">
@@ -54,12 +57,6 @@ export default function NavBar(props) {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/account">Account</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/sell">Sell Product</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/products">Products</Link>
                             </li>
                             <li className="nav-item">
                                 <button className="nav-link fakeLink"
