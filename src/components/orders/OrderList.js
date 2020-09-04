@@ -66,6 +66,18 @@ export default function OrderList(props) {
         }).then(props.history.push('/confirmation'))
     }
 
+    const cancelOrder = () => {
+       fetch(`http://localhost:8000/orders/${order.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-type': "application/json",
+          "Accept": "application/json",
+          "Authorization": `Token ${localStorage.getItem('bangazon_token')}`
+        }
+      })
+      // return fetch(`http://localhost:8000/products`)
+      // .then(props.history.push('/'))
+    }  
     const removeProduct = (product_order_id, product_url) => {
         fetch(`http://localhost:8000/orderproducts/${product_order_id}`, {
             "method": "DELETE",
@@ -112,6 +124,7 @@ export default function OrderList(props) {
                 <button onClick={() => removeProduct(productorder.id, productorder.product.url)}>Remove from Cart</button>
                 </div>)}
             </div>
+            <button onClick={cancelOrder}>Cancel Order</button>
         </>
     )
 }
