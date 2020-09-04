@@ -5,7 +5,7 @@ import '../products/ProductCard.css'
 export default function ProductCard(props) {
 
     const handleDelete = () => {
-        ApiManager.deleteProduct(props.product.id).then(props.getProducts).then(props.history.push('/products'))
+        ApiManager.deleteProduct(props.productId).then(props.getProducts).then(props.history.push('/products'))
     }
 
     return (
