@@ -11,6 +11,7 @@ export default function OrderList(props) {
     const [toggle, setToggle] = useState(false)
     const [paymentTypes, setPaymentTypes] = useState([]);
     const [paymentType, setPaymentType] = useState('');
+    const [total, setTotal] = useState('');
 
 
     const getProductsOrder = () => {
@@ -22,7 +23,10 @@ export default function OrderList(props) {
             }
         })
         .then(res => res.json())
-        .then(setProductOrders)
+        .then(productOrders => {
+            setProductOrders(productOrders)
+            calculateTotal(productOrders)
+        })
     }
 
     const getOrder = () => {
@@ -67,17 +71,38 @@ export default function OrderList(props) {
     }
 
     const cancelOrder = () => {
-       fetch(`http://localhost:8000/orders/${order.id}`, {
+        fetch(`http://localhost:8000/orders/${order.id}`, {
         method: 'DELETE',
         headers: {
-          'Content-type': "application/json",
-          "Accept": "application/json",
-          "Authorization": `Token ${localStorage.getItem('bangazon_token')}`
+            'Content-type': "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem('bangazon_token')}`
         }
-      })
-      // return fetch(`http://localhost:8000/products`)
-      // .then(props.history.push('/'))
-    }  
+        }).then(updateProductQuantities).then(() => getProductsOrder())
+    }
+
+    async function updateProductQuantities() {
+        for(let i = 0; i < productOrders.length; i++) {
+            const productOrder = productOrders[i].product.url
+            try {
+                let product_id = productOrder.split('products/')[1]
+                await fetch(`http://localhost:8000/products/${product_id}`, {
+                        'method': 'PUT',
+                        'headers': {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'Authorization': `Token ${localStorage.getItem("bangazon_token")}`
+                        },
+                        'body': JSON.stringify({
+                            product_id: product_id
+                        })
+                });
+            } catch(e) {
+                console.error(e.message)
+            }
+        } 
+    }
+
     const removeProduct = (product_order_id, product_url) => {
         fetch(`http://localhost:8000/orderproducts/${product_order_id}`, {
             "method": "DELETE",
@@ -100,9 +125,18 @@ export default function OrderList(props) {
         }).then(getProductsOrder)
     }
 
+    const calculateTotal = (productOrders) => {
+        let total = 0
+        productOrders.forEach(productOrder => {
+            total += parseFloat(productOrder.product.price)
+        });
+        setTotal(total.toFixed(2))
+    }
+
     return (
         <>
             <h2>Shopping Cart</h2>
+            <h2>${total}</h2>
             <button onClick={() => setToggle(!toggle)}>Complete Order</button>
             {toggle ? (
                 <div>
@@ -120,11 +154,10 @@ export default function OrderList(props) {
             <div>
                 {productOrders.map(productorder => <div key={productorder.id}>
                 <ProductCard key={productorder.id} product={productorder.product} {...props} />
-                {console.log(productorder.product)}
                 <button onClick={() => removeProduct(productorder.id, productorder.product.url)}>Remove from Cart</button>
                 </div>)}
             </div>
-            <button onClick={cancelOrder}>Cancel Order</button>
+            <button onClick={() => cancelOrder(productOrders)}>Cancel Order</button>
         </>
     )
 }
