@@ -37,17 +37,19 @@ export default function ProductDetails(props) {
     }
 
     return (
-        <div>
+        <div class="card" style={{ "padding" : "20px", "align-items" : "center", "margin" : "10px" }}>
+            <div class="card-body">
             <h2>{product.title}</h2>
             <img src={product.imagePath} />
             <p>{product.description}</p>
             <p>{product.price}</p>
             <p>{product.quantity}</p>
             {product.quantity < 1 ? (
-                <p>Out Of Stock</p>
+                <p style={{ "color" : "red" }}>Out Of Stock</p>
             )
             : <button onClick={addingToOrder}>Add To Order</button>
             }
+        </div>
         </div>
     )
 }

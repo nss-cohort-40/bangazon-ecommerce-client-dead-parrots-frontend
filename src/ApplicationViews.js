@@ -99,7 +99,7 @@ export default function ApplicationViews(props) {
             />
 
             <Route path="/search"> 
-                <div>
+            <div className="d-flex flex-wrap home-flex" style={{ "padding" : "20px", "align-items" : "center" }}>
                 {props.products.map (product => <ProductSearch key={product.id} product={product} {...props} />)}
                 </div>
             </Route>   

@@ -33,7 +33,7 @@ export default function ProductList(props) {
     useEffect(getProducts, [customer])
 
     return (
-        <div>
+        <div className="d-flex flex-wrap home-flex" style={{ "padding" : "20px", "align-items" : "center" }}>
             {products.map(product => <ProductCard key={product.id} productId={product.id} getProducts={getProducts} customer={customer} product={product} {...props} />)}
         </div>
     )
