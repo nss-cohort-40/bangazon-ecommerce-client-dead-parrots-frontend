@@ -18,22 +18,12 @@ import OrderDetails from './components/orders/OrderDetails';
 export default function ApplicationViews(props) {
 
     const setCurrentUser = props.setCurrentUser
-    const [loggedIn, setIsLoggedIn] = useState(false)
-
-    const isAuthenticated = () =>
-        loggedIn || localStorage.getItem('bangazon_token') !== null
 
     return (
         <>
             <Route
                 exact path="/" render={props => {
-                    if(isAuthenticated()) {
-
-                        return <Home setIsCurrentUser={setCurrentUser} {...props} />
-                    }
-                    else {
-                        return <Redirect to="/Login"/>
-                    }
+                    return <Home setIsCurrentUser={setCurrentUser} {...props} />
                 }}
             />
             <Route

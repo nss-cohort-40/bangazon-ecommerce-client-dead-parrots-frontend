@@ -9,7 +9,7 @@ export default function Home(props) {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
-                "Authorization": `token ${localStorage.getItem("bangazon_token")}`
+                // "Authorization": `token ${localStorage.getItem("bangazon_token")}`
             }
         })
         .then(res => res.json())
