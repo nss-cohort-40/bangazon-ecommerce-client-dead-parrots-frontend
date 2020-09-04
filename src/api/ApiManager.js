@@ -33,14 +33,6 @@ export default {
             }
         })
     },
-    deleteProduct(id) {
-        return fetch(`${remoteURL}/products/${id}`, {
-            "method": "DELETE",
-            "headers": {
-                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-            }
-        })
-    },
     putCustomer(customer) {
         return fetch(`${remoteURL}/customers/${customer.id}`, {
             method: 'PUT',

@@ -22,8 +22,7 @@ export default function ProductList(props) {
         })
             .then(res => res.json())
             .then(products => {
-                let customerProducts = products.filter(product => product.seller.url.split('customers/')[1] == customer.id)
-                console.log('customer products', customerProducts)
+                let customerProducts = products.filter(product => parseInt(product.seller.url.split('customers/')[1]) === customer.id)
                 setProducts(customerProducts)
             })
     }
@@ -34,7 +33,7 @@ export default function ProductList(props) {
 
     return (
         <div className="d-flex flex-wrap home-flex" style={{ "padding" : "20px", "align-items" : "center" }}>
-            {products.map(product => <ProductCard key={product.id} getProducts={getProducts} customer={customer} product={product} {...props} />)}
+            {products.map(product => <ProductCard key={product.id} productId={product.id} getProducts={getProducts} customer={customer} product={product} {...props} />)}
         </div>
     )
 }

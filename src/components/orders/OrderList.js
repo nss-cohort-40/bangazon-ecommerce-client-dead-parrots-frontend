@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import ProductCard from '../products/ProductCard'
-import PaymentType from '../payment_types/PaymentType'
 import ApiManager from '../../api/ApiManager';
 
 
@@ -12,7 +11,6 @@ export default function OrderList(props) {
     const [paymentTypes, setPaymentTypes] = useState([]);
     const [paymentType, setPaymentType] = useState('');
     const [total, setTotal] = useState('');
-
 
     const getProductsOrder = () => {
         fetch(`http://localhost:8000/orderproducts`, {
@@ -153,7 +151,7 @@ export default function OrderList(props) {
             null}
             <div>
                 {productOrders.map(productorder => <div key={productorder.id}>
-                <ProductCard key={productorder.id} product={productorder.product} {...props} />
+                <ProductCard key={productorder.id} productId={productorder.product.url.split('products/')[1]} product={productorder.product} {...props} />
                 <button onClick={() => removeProduct(productorder.id, productorder.product.url)}>Remove from Cart</button>
                 </div>)}
             </div>

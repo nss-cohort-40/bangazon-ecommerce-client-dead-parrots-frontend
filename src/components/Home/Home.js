@@ -22,7 +22,7 @@ export default function Home(props) {
 
     return (
         <div>
-            {products.map(product => <ProductCard key={product.id} product={product} {...props}/>)}
+            {products.map(product => <ProductCard key={product.id} productId={product.id} product={product} {...props}/>)}
         </div>
     )
 }

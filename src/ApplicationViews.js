@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Route, Redirect } from 'react-router-dom';
 import Login from './components/auth/Login';
 import ProductList from './components/products/ProductList';
 import ProductDetails from './components/products/ProductDetails';
@@ -13,15 +13,17 @@ import ProductSearch from './components/products/ProductSearch';
 import PaymentTypeList from './components/payment_types/PaymentTypeList';
 import OrderHistoryList from './components/account/OrderHistoryList';
 import CompletedOrder from './components/orders/CompletedOrder';
+import OrderDetails from './components/orders/OrderDetails';
 
 export default function ApplicationViews(props) {
 
     const setCurrentUser = props.setCurrentUser
+
     return (
         <>
             <Route
                 exact path="/" render={props => {
-                    return <Home {...props} />
+                    return <Home setIsCurrentUser={setCurrentUser} {...props} />
                 }}
             />
             <Route
@@ -97,6 +99,12 @@ export default function ApplicationViews(props) {
                     return <CompletedOrder {...props} />
                 }}
             /> 
+
+            <Route
+                exact path="/order/:orderId" render={props => {
+                    return <OrderDetails orderId={parseInt(props.match.params.orderId)} {...props} />
+                }}
+            />
         </>
     )
 }
