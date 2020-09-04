@@ -8,12 +8,12 @@ export default function ProductForm(props) {
     const description = useRef()
     const location = useRef()
     const quantity = useRef()
-    const imagePath = useRef()
     const [checked, setChecked] = useState(false)
     const [customer, setCustomer] = useState({ user: {} })
     const [productTypeId, setProductTypeId] = useState({ product_type_id: "" })
     const [productTypes, setProductTypes] = useState([])
     const [isValid, setIsValid] = useState(false)
+    const [image, setImage] = useState('')
     const handleClick = () => setChecked(!checked)
 
     const getCustomer = () => {
@@ -32,9 +32,27 @@ export default function ProductForm(props) {
         setIsValid(true)
     }
 
+    const uploadImage = async event => {
+        console.log('hello')
+        const files = event.target.files
+        const data = new FormData()
+        data.append('file', files[0])
+        data.append('upload_preset', 'productImage')
+        console.log(files[0])
+        const res = await fetch('https://api.cloudinary.com/v1_1/dbjxqdddk/image/upload',
+          {
+            method: 'POST',
+            body: data
+          }
+        )
+        const file = await res.json()
+        setImage(file.secure_url)
+        console.log('image', file.secure_url)
+      }
+
     const onSubmitHandler = (e) => {
         const date = new Date()
-
+        console.log(image)
         if (isValid) {
             const product = {
                 title: title.current.value,
@@ -42,7 +60,7 @@ export default function ProductForm(props) {
                 description: description.current.value,
                 quantity: quantity.current.value,
                 location: location.current.value,
-                image_path: imagePath.current.value,
+                image_path: image,
                 product_type_id: productTypeId.product_type_id,
                 created_at: date,
                 local_delivery: checked
@@ -114,12 +132,15 @@ export default function ProductForm(props) {
                         required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="imagePath"> Image path </label>
-                    <input ref={imagePath} type="file"
-                        name="imagePath"
+                <label className="labelFile" htmlFor="file"> Product Image
+                    <input 
+                        id="file" 
+                        type="file"
+                        name="file"
                         className="form-control"
-                        placeholder="imagePath"
+                        onChange={uploadImage}
                     />
+                 </label>
                 </fieldset>
                 <fieldset>
                     <label htmlFor="localDelivery"> Local Delivery</label>

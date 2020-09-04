@@ -83,4 +83,15 @@ export default {
             },
         })
     },
+    update(product) {
+        return fetch(`${remoteURL}/products/${product.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem('bangazon_token')}`
+          },
+          body: JSON.stringify(product)
+        }).then(data => data.json());
+      }
 };
