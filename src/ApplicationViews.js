@@ -13,6 +13,7 @@ import ProductSearch from './components/products/ProductSearch';
 import PaymentTypeList from './components/payment_types/PaymentTypeList';
 import OrderHistoryList from './components/account/OrderHistoryList';
 import CompletedOrder from './components/orders/CompletedOrder';
+import OrderDetails from './components/orders/OrderDetails';
 
 export default function ApplicationViews(props) {
 
@@ -97,6 +98,12 @@ export default function ApplicationViews(props) {
                     return <CompletedOrder {...props} />
                 }}
             /> 
+
+            <Route
+                exact path="/order/:orderId" render={props => {
+                    return <OrderDetails orderId={parseInt(props.match.params.orderId)} {...props} />
+                }}
+            />
         </>
     )
 }

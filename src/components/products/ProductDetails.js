@@ -14,7 +14,10 @@ export default function ProductDetails(props) {
             }
         })
         .then(response => response.json())
-        .then(setProduct)
+        .then(product => {
+            console.log(product)
+            setProduct(product)
+        })
     }
     
     useEffect(getProduct, [])

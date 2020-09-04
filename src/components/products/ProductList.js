@@ -33,7 +33,7 @@ export default function ProductList(props) {
 
     return (
         <div>
-            {products.map(product => <ProductCard key={product.id} getProducts={getProducts} customer={customer} product={product} {...props} />)}
+            {products.map(product => <ProductCard key={product.id} productId={product.id} getProducts={getProducts} customer={customer} product={product} {...props} />)}
         </div>
     )
 }
