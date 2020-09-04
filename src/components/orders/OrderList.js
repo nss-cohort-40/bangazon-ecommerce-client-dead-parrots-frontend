@@ -78,6 +78,27 @@ export default function OrderList(props) {
       // return fetch(`http://localhost:8000/products`)
       // .then(props.history.push('/'))
     }  
+    const removeProduct = (product_order_id, product_url) => {
+        fetch(`http://localhost:8000/orderproducts/${product_order_id}`, {
+            "method": "DELETE",
+            "headers": {
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            }
+        }).then(() => {
+                let product_id = product_url.split('products/')[1]
+                return fetch(`http://localhost:8000/products/${product_id}`, {
+                'method': 'PUT',
+                'headers': {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${localStorage.getItem("bangazon_token")}`
+                },
+                'body': JSON.stringify({
+                    product_id: product_id
+                })
+            })
+        }).then(getProductsOrder)
+    }
 
     return (
         <>
@@ -97,7 +118,11 @@ export default function OrderList(props) {
             :
             null}
             <div>
-                {productOrders.map(productorder => <ProductCard key={productorder.id} product={productorder.product} {...props} />)}
+                {productOrders.map(productorder => <div key={productorder.id}>
+                <ProductCard key={productorder.id} product={productorder.product} {...props} />
+                {console.log(productorder.product)}
+                <button onClick={() => removeProduct(productorder.id, productorder.product.url)}>Remove from Cart</button>
+                </div>)}
             </div>
             <button onClick={cancelOrder}>Cancel Order</button>
         </>
