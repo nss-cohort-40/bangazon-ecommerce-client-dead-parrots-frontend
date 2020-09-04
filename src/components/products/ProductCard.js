@@ -1,5 +1,6 @@
 import React from 'react'
 import ApiManager from '../../api/ApiManager'
+import '../products/ProductCard.css'
 
 export default function ProductCard(props) {
 
@@ -9,7 +10,8 @@ export default function ProductCard(props) {
 
     return (
         <>
-            <div>
+            <div className="card home-flex" style={{ "padding" : "20px", "align-items" : "center", "margin" : "10px" }}>
+                <div class="card-body">
                 <h2><a href={`/products/${props.product.id}`}> {props.product.title}</a></h2>
                 <p>{props.product.description}</p>
                 <p>{props.product.price}</p>
@@ -19,6 +21,7 @@ export default function ProductCard(props) {
                         Delete
                 </button>
                     : null}
+            </div>
             </div>
         </>
     )
