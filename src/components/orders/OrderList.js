@@ -67,15 +67,17 @@ export default function OrderList(props) {
     }
 
     const cancelOrder = () => {
-      return fetch(`http://localhost:8000/orders/${order.id}`, {
+       fetch(`http://localhost:8000/orders/${order.id}`, {
         method: 'DELETE',
         headers: {
           'Content-type': "application/json",
           "Accept": "application/json",
           "Authorization": `Token ${localStorage.getItem('bangazon_token')}`
         }
-      }).then(props.history.push('/'))
-    }
+      })
+      // return fetch(`http://localhost:8000/products`)
+      // .then(props.history.push('/'))
+    }  
 
     return (
         <>
