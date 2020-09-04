@@ -31,17 +31,13 @@ export default function NavBar(props) {
                 <li className="nav-item">
                     <Link className="nav-link" to="/">Bangazon</Link>
                 </li>
-
-                {/* <li className="nav-item">
-                    <Link className="nav-link" to="/productTypes">Product Categories</Link>
-                </li> */}
-                <form className="navbar-form" role="search">
-                    <div className="form-group navbar-right">
-                        <input ref={searchTerm} type="text" className="searchTerm" placeholder="Search Products" />
-                    </div>
-                    <button type="submit" className="btn btn-default"
-                        onClick={(event) => { props.search(event, searchTerm.current.value) }}
-                    >Submit</button>
+                <form className="navbar-form d-flex" role="search">
+                                <div className="form-group navbar-right">
+                                    <input style={{ "margin-top" : "8px" }} ref={searchTerm} type="text" className="searchTerm" placeholder="Search Products"/>
+                                </div>
+                                <button type="submit" className="btn btn-default"  style={{ "margin-top" : "-14px" }}
+                                    onClick={(event) => { props.search(event, searchTerm.current.value) }}
+                                >Search</button>
                 </form>
                 {
                     isAuthenticated() ?
